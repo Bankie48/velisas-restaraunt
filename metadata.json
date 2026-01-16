@@ -1,8 +1,5 @@
 {
   "name": "Velisa's Restaurant",
-  "description": "A modern, premium restaurant website for Velisa's in Msasani Bay, Dar es Salaam, featuring an AI-powered menu assistant and seamless online ordering experience.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "description": "Professional restaurant website for Velisa's Msasani Bay, built with React, TypeScript, and Tailwind CSS.",
+  "requestFramePermissions": []
 }

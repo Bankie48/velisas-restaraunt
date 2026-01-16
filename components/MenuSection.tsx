@@ -1,80 +1,127 @@
 
 import React, { useState } from 'react';
-import { MENU_ITEMS } from '../constants';
+import { MENU_ITEMS, THEME } from '../constants';
+import { Category } from '../types';
+
+const categories: (Category | 'All')[] = ['All', 'Main Courses', 'Fast Food', 'Snacks', 'Drinks'];
 
 const MenuSection: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<string>('All');
-  const categories = ['All', 'Appetizers', 'Main Courses', 'Desserts', 'Drinks'];
+  const [activeTab, setActiveTab] = useState<Category | 'All'>('All');
 
-  const filteredItems = activeCategory === 'All' 
+  const filteredItems = activeTab === 'All' 
     ? MENU_ITEMS 
-    : MENU_ITEMS.filter(item => item.category === activeCategory);
+    : MENU_ITEMS.filter(item => item.category === activeTab);
+
+  const styles = {
+    section: {
+      padding: '80px 24px',
+      backgroundColor: '#FAFAFA',
+    } as React.CSSProperties,
+    header: {
+      textAlign: 'center',
+      marginBottom: '60px',
+    } as React.CSSProperties,
+    title: {
+      fontSize: '48px',
+      fontFamily: THEME.fontSerif,
+      color: THEME.dark,
+    } as React.CSSProperties,
+    tabs: {
+      display: 'flex',
+      justifyContent: 'center',
+      flexWrap: 'wrap',
+      gap: '12px',
+      marginBottom: '48px',
+    } as React.CSSProperties,
+    tabBtn: (isActive: boolean): React.CSSProperties => ({
+      padding: '10px 24px',
+      borderRadius: '50px',
+      fontSize: '14px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      border: `1px solid ${isActive ? THEME.accent : '#DDDDDD'}`,
+      backgroundColor: isActive ? THEME.accent : THEME.white,
+      color: isActive ? THEME.white : THEME.textLight,
+      transition: 'all 0.2s',
+    }),
+    grid: {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+      gap: '32px',
+      maxWidth: '1200px',
+      margin: '0 auto',
+    } as React.CSSProperties,
+    card: {
+      backgroundColor: THEME.white,
+      borderRadius: '20px',
+      overflow: 'hidden',
+      boxShadow: '0 4px 15px rgba(0,0,0,0.05)',
+      display: 'flex',
+      flexDirection: 'column', // Vertically stacked
+    } as React.CSSProperties,
+    img: {
+      width: '100%',
+      height: '240px',
+      objectFit: 'cover',
+      backgroundColor: '#EEE', // Placeholder color
+    } as React.CSSProperties,
+    cardBody: {
+      padding: '24px',
+    } as React.CSSProperties,
+    itemTitle: {
+      fontSize: '22px',
+      fontFamily: THEME.fontSerif,
+      marginBottom: '8px',
+      color: THEME.dark,
+    } as React.CSSProperties,
+    itemPrice: {
+      color: THEME.accent,
+      fontWeight: 'bold',
+      fontSize: '18px',
+    } as React.CSSProperties,
+    itemDesc: {
+      fontSize: '14px',
+      color: THEME.textLight,
+      lineHeight: 1.5,
+      marginTop: '8px',
+    } as React.CSSProperties
+  };
 
   return (
-    <section id="menu" className="py-24 bg-stone-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-stone-900 mb-4">Menyu Yetu</h2>
-          <div className="h-1 w-20 bg-amber-600 mx-auto mb-8"></div>
-          <p className="text-stone-600 max-w-2xl mx-auto text-lg">
-            Kila sahani imepikwa kwa uangalifu kwa kutumia viungo vibichi na vya asili.
-          </p>
-        </div>
+    <section id="menu" style={styles.section}>
+      <div style={styles.header}>
+        <h2 style={{ fontSize: '14px', fontWeight: 'bold', color: THEME.accent, textTransform: 'uppercase', letterSpacing: '2px', marginBottom: '8px' }}>Our Specialties</h2>
+        <h3 style={styles.title}>Our Menu</h3>
+      </div>
 
-        {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full text-sm font-medium transition-all ${
-                activeCategory === cat 
-                ? 'bg-amber-600 text-white shadow-md' 
-                : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
+      <div style={styles.tabs}>
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveTab(cat)}
+            style={styles.tabBtn(activeTab === cat)}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
-        {/* Menu Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredItems.map((item) => (
-            <div 
-              key={item.id} 
-              className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group"
-            >
-              <div className="relative h-64 overflow-hidden">
-                <img 
-                  src={item.image} 
-                  alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute top-4 right-4 bg-amber-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
-                  {item.price}
-                </div>
+      <div style={styles.grid}>
+        {filteredItems.map((item) => (
+          <div key={item.id} style={styles.card}>
+            <img src={item.image} alt={item.name} style={styles.img} />
+            <div style={styles.cardBody}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <h4 style={styles.itemTitle}>{item.name}</h4>
+                <span style={styles.itemPrice}>{item.price}</span>
               </div>
-              <div className="p-6">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-stone-900 group-hover:text-amber-600 transition-colors">
-                    {item.name}
-                  </h3>
-                </div>
-                <p className="text-stone-500 text-sm mb-4 leading-relaxed">
-                  {item.description}
-                </p>
-                <div className="flex items-center justify-between mt-auto">
-                  <span className="text-xs uppercase tracking-wider text-amber-600 font-bold">{item.category}</span>
-                  <button className="text-amber-600 hover:text-amber-700 text-sm font-semibold flex items-center gap-1 group/btn">
-                    Order Now
-                    <span className="transform transition-transform group-hover/btn:translate-x-1">→</span>
-                  </button>
-                </div>
+              <p style={styles.itemDesc}>{item.description}</p>
+              <div style={{ marginTop: '20px', fontSize: '10px', fontWeight: 'bold', color: '#AAA', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                {item.category}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </section>
   );

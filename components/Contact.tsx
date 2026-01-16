@@ -1,115 +1,101 @@
 
 import React from 'react';
-import { MapPin, Phone, Mail, Clock, Instagram, Facebook } from 'lucide-react';
-import { RESTAURANT_INFO } from '../constants';
+import { MapPin, Phone, Mail, Instagram, Facebook, Twitter } from 'lucide-react';
+import { RESTAURANT_DATA } from '../constants';
 
 const Contact: React.FC = () => {
   return (
-    <section id="contact" className="py-24 bg-stone-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-stone-900 mb-4">Wasiliana Nasi</h2>
-          <div className="h-1 w-20 bg-amber-600 mx-auto"></div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Info Card */}
-          <div className="bg-white p-8 md:p-12 rounded-3xl shadow-sm border border-stone-100">
-            <h3 className="text-2xl font-serif mb-8 text-stone-900">Get in Touch</h3>
+    <section id="contact" className="py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+          <div>
+            <h2 className="text-sm font-bold tracking-[0.3em] text-amber-600 uppercase mb-4">Connect With Us</h2>
+            <h3 className="text-5xl font-serif text-stone-900 mb-8">Reservations & Inquiries</h3>
             
-            <div className="space-y-8">
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-stone-50 rounded-xl text-amber-600">
+            <div className="space-y-10 mb-12">
+              <div className="flex items-start gap-6">
+                <div className="p-4 bg-stone-50 rounded-2xl text-amber-600 border border-stone-100">
                   <MapPin size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-stone-900">Mahali</p>
-                  <p className="text-stone-500">{RESTAURANT_INFO.location}</p>
-                  <p className="text-stone-400 text-sm">{RESTAURANT_INFO.address}</p>
+                  <h6 className="font-bold text-stone-900 mb-1">Our Location</h6>
+                  <p className="text-stone-500 leading-relaxed">{RESTAURANT_DATA.location}<br/>{RESTAURANT_DATA.address}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-stone-50 rounded-xl text-amber-600">
+              <div className="flex items-start gap-6">
+                <div className="p-4 bg-stone-50 rounded-2xl text-amber-600 border border-stone-100">
                   <Phone size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-stone-900">Simu</p>
-                  <p className="text-stone-500">{RESTAURANT_INFO.phone}</p>
+                  <h6 className="font-bold text-stone-900 mb-1">Call Us</h6>
+                  <p className="text-stone-500 leading-relaxed">{RESTAURANT_DATA.phone}</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-stone-50 rounded-xl text-amber-600">
-                  <Clock size={24} />
+              <div className="flex items-start gap-6">
+                <div className="p-4 bg-stone-50 rounded-2xl text-amber-600 border border-stone-100">
+                  <Mail size={24} />
                 </div>
                 <div>
-                  <p className="font-bold text-stone-900">Masaa ya Kazi</p>
-                  <p className="text-stone-500">{RESTAURANT_INFO.hours}</p>
-                  <p className="text-stone-400 text-sm">Every Day of the Week</p>
+                  <h6 className="font-bold text-stone-900 mb-1">Email Us</h6>
+                  <p className="text-stone-500 leading-relaxed">{RESTAURANT_DATA.email}</p>
                 </div>
               </div>
             </div>
 
-            <div className="mt-12">
-              <p className="font-bold text-stone-900 mb-4">Tufuate Mtandaoni</p>
+            <div className="pt-10 border-t border-stone-100">
+              <span className="text-xs font-bold uppercase tracking-widest text-stone-400 block mb-6">Follow Our Story</span>
               <div className="flex gap-4">
-                <a href="#" className="p-3 bg-stone-50 rounded-xl text-stone-600 hover:text-amber-600 transition-colors">
-                  <Instagram size={24} />
-                </a>
-                <a href="#" className="p-3 bg-stone-50 rounded-xl text-stone-600 hover:text-amber-600 transition-colors">
-                  <Facebook size={24} />
-                </a>
+                {[
+                  { icon: Instagram, href: RESTAURANT_DATA.socials.instagram, label: 'Instagram' },
+                  { icon: Facebook, href: RESTAURANT_DATA.socials.facebook, label: 'Facebook' },
+                  { icon: Twitter, href: RESTAURANT_DATA.socials.twitter, label: 'Twitter' }
+                ].map((social, idx) => (
+                  <a 
+                    key={idx}
+                    href={social.href} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="p-4 bg-stone-50 rounded-full text-stone-600 hover:bg-amber-600 hover:text-white transition-all shadow-sm"
+                    aria-label={social.label}
+                  >
+                    <social.icon size={22} />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
 
-          {/* Contact Form / Map */}
-          <div className="flex flex-col gap-8">
-            <div className="bg-white p-8 rounded-3xl shadow-sm border border-stone-100 flex-1">
-              <form className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <input 
-                    type="text" 
-                    placeholder="Jina Lako" 
-                    className="w-full bg-stone-50 border-stone-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 outline-none transition-all"
-                  />
-                  <input 
-                    type="email" 
-                    placeholder="Barua Pepe" 
-                    className="w-full bg-stone-50 border-stone-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 outline-none transition-all"
-                  />
+          <div className="bg-stone-50 p-10 md:p-14 rounded-[2rem] shadow-sm border border-stone-100">
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-stone-500 ml-1">Full Name</label>
+                  <input type="text" className="w-full bg-white border-transparent rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-amber-500 shadow-sm transition-all" placeholder="John Doe" />
                 </div>
-                <input 
-                  type="text" 
-                  placeholder="Mada" 
-                  className="w-full bg-stone-50 border-stone-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 outline-none transition-all"
-                />
-                <textarea 
-                  rows={4} 
-                  placeholder="Ujumbe Wako" 
-                  className="w-full bg-stone-50 border-stone-200 rounded-xl px-4 py-3 text-sm focus:ring-2 focus:ring-amber-500 outline-none transition-all resize-none"
-                ></textarea>
-                <button 
-                  type="submit" 
-                  className="w-full bg-amber-600 text-white font-bold py-3 rounded-xl hover:bg-amber-700 transition-colors shadow-lg shadow-amber-600/20"
-                >
-                  Tuma Ujumbe
-                </button>
-              </form>
-            </div>
-            
-            <div className="rounded-3xl overflow-hidden h-64 shadow-md grayscale hover:grayscale-0 transition-all duration-700">
-               {/* Simplified Google Maps Placeholder */}
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15848.11874744274!2d39.266209!3d-6.766209!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x185c4943f556488d%3A0xe54c194e92a01948!2sMsasani%20Bay!5e0!3m2!1sen!2stz!4v1700000000000!5m2!1sen!2stz" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={true} 
-                loading="lazy"
-              ></iframe>
-            </div>
+                <div className="space-y-2">
+                  <label className="text-xs font-bold uppercase tracking-wider text-stone-500 ml-1">Email Address</label>
+                  <input type="email" className="w-full bg-white border-transparent rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-amber-500 shadow-sm transition-all" placeholder="john@example.com" />
+                </div>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-stone-500 ml-1">Subject</label>
+                <select className="w-full bg-white border-transparent rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-amber-500 shadow-sm transition-all appearance-none">
+                  <option>General Inquiry</option>
+                  <option>Table Reservation</option>
+                  <option>Catering Services</option>
+                  <option>Private Events</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <label className="text-xs font-bold uppercase tracking-wider text-stone-500 ml-1">Your Message</label>
+                <textarea rows={5} className="w-full bg-white border-transparent rounded-2xl px-6 py-4 text-sm focus:ring-2 focus:ring-amber-500 shadow-sm transition-all resize-none" placeholder="How can we help you?"></textarea>
+              </div>
+              <button className="w-full bg-stone-900 text-white font-bold py-5 rounded-2xl hover:bg-stone-800 transition-all shadow-xl hover:shadow-2xl flex justify-center items-center gap-3 mt-4">
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </div>

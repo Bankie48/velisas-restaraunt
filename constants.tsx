@@ -1,94 +1,91 @@
 
-import { MenuItem, Review } from './types';
+import { MenuItem, Review, RestaurantInfo } from './types';
 
-export const RESTAURANT_INFO = {
-  name: "Velisa's",
-  tagline: "Experience the Taste of Msasani Bay",
-  rating: 4.3,
-  reviewCount: 276,
+export const THEME = {
+  accent: '#E67E22',
+  dark: '#1A1A1A',
+  charcoal: '#262626',
+  white: '#FFFFFF',
+  textMain: '#333333',
+  textLight: '#777777',
+  fontSerif: "'Playfair Display', serif",
+  fontSans: "'Inter', sans-serif",
+};
+
+export const RESTAURANT_DATA: RestaurantInfo = {
+  name: "Velisa's Restaurant",
+  tagline: "Enjoy delicious meals made with love.",
+  rating: 4.5,
+  reviewCount: 278,
   location: "Msasani Bay, Dar es Salaam",
-  address: "765R+P5 Dar es Salaam",
-  hours: "10:00 AM - 10:00 PM",
-  phone: "+255 000 000 000",
-  email: "info@velisas.com",
+  address: "765R+P5 Dar es Salaam, Tanzania",
+  hours: "Mon - Sun: 10:00 AM - 10:00 PM",
+  phone: "+255 700 000 000",
+  email: "info@velisasrestaurant.com",
   socials: {
-    instagram: "@velisas_restaurant",
-    facebook: "VelisasRestaurant",
-    whatsapp: "+255000000000"
+    instagram: "https://instagram.com/velisas_restaurant",
+    facebook: "https://facebook.com/VelisasRestaurant",
+    twitter: "https://twitter.com/velisas_dar",
+    whatsapp: "https://wa.me/255700000000"
   }
 };
 
 export const MENU_ITEMS: MenuItem[] = [
   {
-    id: '1',
+    id: 'm1',
     name: 'Grilled Red Snapper',
     description: 'Freshly caught red snapper, seasoned with Swahili spices and grilled to perfection.',
-    price: '35,000 TZS',
+    price: '20,000 TZS',
     category: 'Main Courses',
-    image: 'https://picsum.photos/id/429/800/600'
+    image: 'https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '2',
-    name: 'Velisa\'s Signature Platter',
-    description: 'A mix of calamari, prawns, and lobster served with garlic butter sauce.',
-    price: '65,000 TZS',
-    category: 'Main Courses',
-    image: 'https://picsum.photos/id/102/800/600'
-  },
-  {
-    id: '3',
-    name: 'Coconut Calamari',
-    description: 'Crispy fried calamari rings with a hint of coconut and lime dipping sauce.',
-    price: '18,000 TZS',
-    category: 'Appetizers',
-    image: 'https://picsum.photos/id/493/800/600'
-  },
-  {
-    id: '4',
-    name: 'Msasani Bay Salad',
-    description: 'Fresh organic greens, avocado, mango, and a passion fruit vinaigrette.',
+    id: 'm2',
+    name: 'Grilled Chicken',
+    description: 'Succulent chicken breast marinated in local spices and grilled to perfection.',
     price: '15,000 TZS',
-    category: 'Appetizers',
-    image: 'https://picsum.photos/id/488/800/600'
+    category: 'Main Courses',
+    image: 'https://images.unsplash.com/photo-1532550907401-a500c9a57435?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '5',
-    name: 'Spiced Fruit Tart',
-    description: 'Local seasonal fruits in a buttery pastry shell with cinnamon cream.',
+    id: 'm3',
+    name: 'Beef Burger',
+    description: 'Juicy beef patty with fresh lettuce, tomato, and our signature Velisa sauce.',
     price: '12,000 TZS',
-    category: 'Desserts',
-    image: 'https://picsum.photos/id/63/800/600'
+    category: 'Fast Food',
+    image: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80'
   },
   {
-    id: '6',
+    id: 'm4',
+    name: 'French Fries',
+    description: 'Hand-cut golden potatoes, double-fried for maximum crunch.',
+    price: '6,000 TZS',
+    category: 'Snacks',
+    image: 'https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'm5',
     name: 'Passion Fruit Mojito',
     description: 'Refreshing blend of local passion fruit, mint, and soda.',
     price: '10,000 TZS',
     category: 'Drinks',
-    image: 'https://picsum.photos/id/453/800/600'
+    image: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=800&q=80'
   }
 ];
 
 export const REVIEWS: Review[] = [
   {
     id: 'r1',
-    author: 'Amani Joseph',
+    author: 'Asha',
     rating: 5,
-    comment: 'The best red snapper in Dar! The ambiance at Msasani Bay is just incredible at sunset.',
-    date: '2 weeks ago'
+    comment: 'Chakula kizuri sana!',
+    date: '2 days ago'
   },
   {
     id: 'r2',
-    author: 'Sarah M.',
+    author: 'John',
     rating: 4,
-    comment: 'Great food and friendly staff. The coconut calamari is a must-try!',
-    date: '1 month ago'
-  },
-  {
-    id: 'r3',
-    author: 'Daniel K.',
-    rating: 5,
-    comment: 'Perfect for a quiet dinner. The no-contact delivery service is also very efficient.',
-    date: '3 days ago'
+    comment: 'Huduma nzuri na haraka.',
+    date: '1 week ago'
   }
 ];
